@@ -62,6 +62,7 @@ namespace  Player
 		//「追加メソッドを書く」
 		void Think();	//思考&状況判断(状態決定)
 		void Move();	//Think()で確定した状態に対応する処理
+		void Rotation(); //回転
 		BChara::DrawInfo Anim(); //アニメーション制御
 		void	Received(BChara* from_);//接触時の応答処理
 		
