@@ -29,13 +29,13 @@ namespace  StageNum
 	}
 	//-------------------------------------------------------------------
 	//「初期化」タスク生成時に１回だけ行う処理
-	bool  Object::Initialize()
+	bool  Object::Initialize(int stageNumber)
 	{
 		//スーパークラス初期化
 		__super::Initialize(defGroupName, defName, true);
 		//リソースクラス生成orリソース共有
 		this->res = Resource::Create();
-
+		number = stageNumber;
 		//★データ初期化
 		easing::Init();
 
@@ -57,7 +57,7 @@ namespace  StageNum
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成
-			auto nextTask = Game::Object::Create(true);
+			auto nextTask = Game::Object::Create(true , number);
 		}
 
 		return  true;
@@ -121,7 +121,7 @@ namespace  StageNum
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//-------------------------------------------------------------------
 	//タスク生成窓口
-	Object::SP  Object::Create(bool  flagGameEnginePushBack_)
+	Object::SP  Object::Create(bool  flagGameEnginePushBack_,int stageNumber)
 	{
 		Object::SP  ob = Object::SP(new  Object());
 		if (ob) {
@@ -129,7 +129,7 @@ namespace  StageNum
 			if (flagGameEnginePushBack_) {
 				ge->PushBack(ob);//ゲームエンジンに登録
 			}
-			if (!ob->B_Initialize()) {
+			if (!ob->Initialize(stageNumber)) {
 				ob->Kill();//イニシャライズに失敗したらKill
 			}
 			return  ob;
@@ -137,10 +137,6 @@ namespace  StageNum
 		return nullptr;
 	}
 	//-------------------------------------------------------------------
-	bool  Object::B_Initialize()
-	{
-		return  this->Initialize();
-	}
 	//-------------------------------------------------------------------
 	Object::~Object() { this->B_Finalize(); }
 	bool  Object::B_Finalize()

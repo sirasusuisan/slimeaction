@@ -3,7 +3,8 @@
 //-------------------------------------------------------------------
 #include  "MyPG.h"
 #include  "Task_Title.h"
-#include  "Task_StageNumber.h"
+//#include  "Task_StageNumber.h"
+#include  "Task_Stageserect.h"
 #include  "Task_Game.h"
 #include  "easing.h"
 
@@ -75,7 +76,7 @@ namespace  Title
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//šˆø‚«Œp‚¬ƒ^ƒXƒN‚Ì¶¬
-			auto nextTask = StageNum::Object::Create(true);
+			auto nextTask = Stageserect::Object::Create(true);
 		}
 
 		return  true;
