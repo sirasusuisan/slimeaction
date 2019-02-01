@@ -1,14 +1,14 @@
 #pragma warning(disable:4996)
 #pragma once
 //-------------------------------------------------------------------
-//プレイヤー
+//敵
 //-------------------------------------------------------------------
 #include "BChara.h"
 
-namespace  Player
+namespace  Enemy00
 {
 	//タスクに割り当てるグループ名と固有名
-	const  string  defGroupName(		"プレイヤー");	//グループ名
+	const  string  defGroupName(		"敵");	//グループ名
 	const  string  defName(				"仮");		//タスク名
 	//-------------------------------------------------------------------
 	class  Resource
@@ -24,17 +24,7 @@ namespace  Player
 		static  Resource::SP  Create();
 	//変更可◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
 		//共有する変数はここに追加する
-		string	stopImage;
-		string	moveImage;
-		string  jumpImage;
-		string  verticalStopImage;
-		string  verticalMoveImage;
-		string  verticalJumpImage;
-		string  sideStopImage;
-		string  sideMoveImage;
-		string  sideJumpImage;
-		string  DamageImage;
-		string  DeathImage;
+		string	EnemyImg;
 	};
 	//-------------------------------------------------------------------
 	class  Object : public  BChara
@@ -60,14 +50,11 @@ namespace  Player
 		//追加したい変数・メソッドはここに追加する
 		//BCharaに含まれないモノのみここに追加する
 		//「変数宣言を書く」
-		string	controllerName;
 		//「追加メソッドを書く」
 		void Think();	//思考&状況判断(状態決定)
 		void Move();	//Think()で確定した状態に対応する処理
-		void Rotation(); //回転
 		BChara::DrawInfo Anim(); //アニメーション制御
 		void	Received(BChara* from_);//接触時の応答処理
-		void CheckMove_TEST(ML::Vec2& e_);
 		
 	};
 }
