@@ -16,15 +16,27 @@ public:
 	//キャラクタ共通メンバ変数
 	ML::Vec2	pos;//キャラクタ位置
 	ML::Box2D	hitBase;//当たり判定範囲
+	ML::Box2D   lvHitBase;//壁張り付き用
+	ML::Box2D   rvHitBase;
+	//中心点
+	ML::Box2D   footCenter;
+	ML::Box2D   leftCenter;
+	ML::Box2D   rightCenter;
+	ML::Box2D   headCenter;
 	ML::Vec2	moveVec;//移動ベクトル
 	int			moveCnt;//行動カウンタ
     //左右の向き
 	enum Angle_LR { Left, Right };
 	Angle_LR   angle_LR;
+	WP target;
 	//変形の方向
 	enum Form_VS { Vertical, Side };
 	Form_VS form_VS;
 	Form_VS preForm_VS;
+	//進んでいる方向
+	enum Direction_Move { floor, lWall, rWall, ceiling };
+	Direction_Move dMove;
+	//Form_VS preForm_VS;
 	//キャラクターの状態
 	enum Motion
 	{
@@ -44,6 +56,11 @@ public:
 		Stick_Move,
 		TakeOff,	//飛び立つ瞬間(ジャンプ予備動作)
 		Landing,	//着地(ジャンプ後動作)
+		Bound,      //やられ時
+		Death,      //死亡時	
+
+		//敵
+		Turn,
 	};
 	Motion		motion;
 	Motion		preMotion;
@@ -57,7 +74,7 @@ public:
 	int			playerhp;//プレイヤーHP
 	int			enemyhp;//敵HP
 	//int		shothp;//攻撃オブジェクトHP (弾とかのやつ)
-	int			unHitTime;//プレイヤー無敵時間
+	int			unHitTime;//プレイヤー無敵時間[
 
 	//メンバ変数の初期化
 	//変数追加したら初期化してね
@@ -96,4 +113,5 @@ public:
 	};
 	virtual void Received(BChara* from_);//接触所の応答処理
 	virtual bool CheckHit(const ML::Box2D& hit_);//接触判定
+	virtual void Damage();//プレイヤーのダメージ関数
 };

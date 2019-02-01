@@ -4,6 +4,8 @@
 #include "BChara.h"
 #include "MyPG.h"
 #include "Task_Map2D.h" 
+#include  "Task_Player.h"
+#include  "Task_Block.h"
 //モーション更新 変更しない場合false
 bool BChara::UpdateMotion(Motion nm_)
 {
@@ -26,8 +28,20 @@ bool BChara::CheckHead()
 	head.Offset((int)this->pos.x, (int)this->pos.y);	//現在地オフセット
 
 	auto map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
+	auto block = ge->GetTask_Group_G<Block::Object>("ブロック");
 	if (nullptr == map) { return false; } //マップがなければ判定しない
-	return map->CheckHit(head);
+	if (map->CheckHit(head))
+	{
+		return true;
+	}
+	for (int i = 0; i < block->size(); ++i)
+	{
+		if (true == (*block)[i]->CheckHit(head))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 //めり込まない移動処理
 void BChara::CheckMove(ML::Vec2& e_) 
@@ -70,8 +84,16 @@ bool BChara::CheckFoot()
 	foot.Offset(this->pos);	//現在地オフセット
 
 	auto map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ");
-	if (nullptr == map) { 
-		return false; } //マップがなければ判定しない
+	auto block = ge->GetTask_Group_G<Block::Object>("ブロック");
+	//if (nullptr == map) { 
+		//return false; } //マップがなければ判定しない
+	for (auto id = block->begin(); id != block->end(); ++id)
+	{
+		if ((*id)->CheckHit(foot))
+		{
+			return true;
+		}
+	}
 	return map->CheckHit(foot);
 }
 //左接触判定
@@ -100,6 +122,11 @@ bool BChara::CheckHit(const ML::Box2D& hit_)
 {
 	ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
 	return me.Hit(hit_);
+}
+void BChara::Damage()
+{
+	auto pl = ge->GetTask_One_G<Player::Object>("プレイヤー");
+	pl->playerhp--;
 }
 //
 void BChara::Received(BChara* from_)
