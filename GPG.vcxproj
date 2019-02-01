@@ -112,6 +112,7 @@
     <ClCompile Include="Task_Player.cpp" />
     <ClCompile Include="Task_Result.cpp" />
     <ClCompile Include="Task_StageNumber.cpp" />
+    <ClCompile Include="Task_Stageserect.cpp" />
     <ClCompile Include="Task_Start.cpp" />
     <ClCompile Include="Task_Title.cpp" />
     <ClCompile Include="Task_Toge.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Task_Player.h" />
     <ClInclude Include="Task_Result.h" />
     <ClInclude Include="Task_StageNumber.h" />
+    <ClInclude Include="Task_Stageserect.h" />
     <ClInclude Include="Task_Start.h" />
     <ClInclude Include="Task_Title.h" />
     <ClInclude Include="Task_Toge.h" />

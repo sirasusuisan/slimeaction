@@ -95,6 +95,9 @@
     <Filter Include="MyPG\Tasks\Game\Enemy00">
       <UniqueIdentifier>{56913b09-935b-413b-95a6-89797cac9392}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyPG\Tasks\Game\StageSelect">
+      <UniqueIdentifier>{f953bd54-e27f-4b08-8265-d25b7202bd40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myLib.cpp">
@@ -208,6 +211,9 @@
     <ClCompile Include="Task_Enemy00.cpp">
       <Filter>MyPG\Tasks\Game\Enemy00</Filter>
     </ClCompile>
+    <ClCompile Include="Task_Stageserect.cpp">
+      <Filter>MyPG\Tasks\Game\StageSelect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myLib.h">
@@ -317,6 +323,9 @@
     </ClInclude>
     <ClInclude Include="Task_Enemy00.h">
       <Filter>MyPG\Tasks\Game\Enemy00</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Stageserect.h">
+      <Filter>MyPG\Tasks\Game\StageSelect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

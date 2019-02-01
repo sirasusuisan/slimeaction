@@ -53,11 +53,12 @@ namespace  Game
 		switch (sn)
 		{
 		case 0:
+			m->Load("./data/Map/tutorial01.csv");
 			break;
 		case 1:
 			break;
 		default:
-			m->Load("./data/Map/tutorial01.csv");
+			
 			break;
 		}
 		//スタート
@@ -74,9 +75,12 @@ namespace  Game
 		//カメラ
 		auto camera = Camera::Object::Create(true);
 		auto pl = ge->GetTask_One_G<Player::Object>("プレイヤー");
-		camera->pos.x = pl->pos.x + 10;
-		camera->pos.y = pl->pos.y + 10;
-		camera->target = pl;
+		if (pl != nullptr)
+		{
+			camera->pos.x = pl->pos.x + 10;
+			camera->pos.y = pl->pos.y + 10;
+			camera->target = pl;
+		}
 		//UI
 		HP::Object::Create(true);
 		KEY::Object::Create(true);
@@ -131,7 +135,7 @@ namespace  Game
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 	//-------------------------------------------------------------------
 	//タスク生成窓口
-	Object::SP  Object::Create(bool  flagGameEnginePushBack_)
+	/*Object::SP  Object::Create(bool  flagGameEnginePushBack_, int number)
 	{
 		Object::SP  ob = Object::SP(new  Object());
 		if (ob) {
@@ -145,7 +149,7 @@ namespace  Game
 			return  ob;
 		}
 		return nullptr;
-	}
+	}*/
 	Object::SP  Object::Create(bool  flagGameEnginePushBack_,int stagenumber)
 	{
 		Object::SP  ob = Object::SP(new  Object());
@@ -162,10 +166,10 @@ namespace  Game
 		return nullptr;
 	}
 	//-------------------------------------------------------------------
-	bool  Object::B_Initialize()
+	/*bool  Object::B_Initialize()
 	{
 		return  this->Initialize();
-	}
+	}*/
 	//-------------------------------------------------------------------
 	Object::~Object() { this->B_Finalize(); }
 	bool  Object::B_Finalize()
