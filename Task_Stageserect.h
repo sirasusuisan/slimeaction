@@ -26,6 +26,7 @@ namespace  Stageserect
 		//‹¤—L‚·‚é•Ï”‚Í‚±‚±‚É’Ç‰Á‚·‚é
 		string backimg;
 		string tyutorialse;
+		string firstse;
 	};
 	//-------------------------------------------------------------------
 	class  Object : public  BChara
@@ -56,6 +57,7 @@ namespace  Stageserect
 
 		int count;
 
-		bool tyutorial;
+	/*	bool tyutorial;
+		bool first;*/
 	};
 }

@@ -15,8 +15,10 @@ namespace  StageNum
 	{
 		this->imageName = "StageNumImg";
 		this->haikeiImg = "HaikeiImg";
+		this->first = "first";
 		DG::Image_Create(this->imageName, "./data/image/Tyutorial.png");
 		DG::Image_Create(this->haikeiImg, "./data/image/black.png");
+		DG::Image_Create(this->first, "./data/image/first.png");
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -25,6 +27,7 @@ namespace  StageNum
 	{
 		DG::Image_Erase(this->imageName);
 		DG::Image_Erase(this->haikeiImg);
+		DG::Image_Erase(this->first);
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -43,7 +46,15 @@ namespace  StageNum
 
 		this->logoPosY = -480;
 		//生成
-		easing::Create("StageNumImg", easing::CIRCINOUT, -480, 0, 80);//easingの開始地点、終了地点、かかる時間
+		if (number == 0)
+		{
+			easing::Create("StageNumImg", easing::CIRCINOUT, -480, 0, 80);//easingの開始地点、終了地点、かかる時間
+		}
+		else if (number == 1)
+		{
+			easing::Create("first", easing::CIRCINOUT, -480, 0, 80);//easingの開始地点、終了地点、かかる時間
+		}
+
 		//★タスクの生成
 
 		return  true;
@@ -76,7 +87,14 @@ namespace  StageNum
 
 		if (this->logoPosY == 0) {
 			this->logoPosY++;
-			easing::Start("StageNumImg");
+			if (number == 0)
+			{
+				easing::Start("StageNumImg");
+			}
+			if(number == 1)
+			{
+				easing::Start("first");
+			}
 		}
 		if (logoPosY >= 0)
 		{
@@ -112,8 +130,24 @@ namespace  StageNum
 		ML::Box2D	src2(0, 0, 640, 480);
 		draw.Offset(0, logoPosY);
 		draw.Offset(0, (int)easing::GetPos("StageNumImg"));
+
+		//1ststage
+		ML::Box2D draw3(170, 100, 300, 80);
+		ML::Box2D src3(0, 0, 308, 85);
+
+		draw3.Offset(0, logoPosY);
+		draw3.Offset(0, (int)easing::GetPos("first"));
+
 		DG::Image_Draw(this->res->haikeiImg, draw2, src2);
-		DG::Image_Draw(this->res->imageName, draw, src);
+		if (number == 0)
+		{
+			DG::Image_Draw(this->res->imageName, draw, src);
+		}
+		if (number == 1)
+		{
+			DG::Image_Draw(this->res->first, draw3, src3);
+		}
+		
 	}
 
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★

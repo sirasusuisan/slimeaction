@@ -26,6 +26,7 @@ namespace  StageNum
 		//‹¤—L‚·‚é•Ï”‚Í‚±‚±‚É’Ç‰Á‚·‚é
 		string imageName;
 		string haikeiImg;
+		string first;
 	};
 	//-------------------------------------------------------------------
 	class  Object : public  BTask

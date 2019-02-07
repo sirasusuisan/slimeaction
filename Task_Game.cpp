@@ -98,8 +98,6 @@ namespace  Game
 		ge->KillAll_G("UI");
 		ge->KillAll_G("ゴール");
 		ge->KillAll_G("敵");
-		ge->KillAll_G("カギ");
-		ge->KillAll_G("扉");
 
 		if (!ge->QuitFlag() && this->nextTaskCreate) {
 			//★引き継ぎタスクの生成

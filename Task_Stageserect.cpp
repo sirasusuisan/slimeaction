@@ -16,8 +16,10 @@ namespace  Stageserect
 	{
 		this->backimg = "BackImg";
 		this->tyutorialse = "TSimg";
+		this->firstse = "firstse";
 		DG::Image_Create(this->backimg, "data/image/black.png");
 		DG::Image_Create(this->tyutorialse, "data/image/Tyutorialse.png");
+		DG::Image_Create(this->firstse, "data/image/firstse.png");
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -26,6 +28,7 @@ namespace  Stageserect
 	{
 		DG::Image_Erase(this->backimg);
 		DG::Image_Erase(this->tyutorialse);
+		DG::Image_Erase(this->firstse);
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -40,7 +43,8 @@ namespace  Stageserect
 		//★データ初期化
 		this->stageNum = -1;
 		this->count = 0;
-		this->tyutorial = false;
+	/*	this->tyutorial = false;
+		this->first = false;*/
 		//★タスクの生成
 
 		return  true;
@@ -52,11 +56,12 @@ namespace  Stageserect
 		//★データ＆タスク解放
 		
 			if (!ge->QuitFlag() && this->nextTaskCreate) {
-				if (this->tyutorial == true)
+				//★引き継ぎタスクの生成
+				auto nextTask = StageNum::Object::Create(true, stageNum);
+			/*	if (this->tyutorial == true || this->first == true )
 				{
-					//★引き継ぎタスクの生成
-					auto nextTask = StageNum::Object::Create(true,stageNum);
-				}
+					
+				}*/
 			}
 		
 
@@ -70,16 +75,16 @@ namespace  Stageserect
 
 		this->count++;
 
-		if (in.L1.down)//Q
+		if (in.L1.down)
 		{
 			this->stageNum = 0;
-			this->tyutorial = true;
+			/*this->tyutorial = true;*/
 			this->Kill();
 		}
-		if (in.R1.down)//w
+		if (in.R1.down)
 		{
 			this->stageNum = 1;
-			this->tyutorial = true;
+		/*	this->first = true;*/
 			this->Kill();
 		}
 		
@@ -96,15 +101,19 @@ namespace  Stageserect
 		ML::Box2D draw1(0, 60, 640, 80);
 		ML::Box2D src1(0, 0, 892, 80);
 
+		//firststageserect
+		ML::Box2D draw2(0, 160, 640, 80);
+		ML::Box2D src2(0, 0, 796, 86);
 		DG::Image_Draw(this->res->backimg, draw, src);
 		if (this->count > 0)
 		{
-			if ((this->count / 32) % 2 == 0 )
+			if ((this->count / 64) % 2 == 0 )
 			{
 				return;
 			}
 		}
 		DG::Image_Draw(this->res->tyutorialse, draw1, src1);
+		DG::Image_Draw(this->res->firstse, draw2, src2);
 	}
 
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
