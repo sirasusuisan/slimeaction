@@ -8,6 +8,8 @@
 #include  "Task_Block.h"
 #include  "Task_Player.h"
 #include  "Task_Enemy00.h"
+#include  "Task_GDoor.h"
+#include  "Task_GKey.h"
 namespace  Map2D
 {
 	Resource::WP  Resource::instance;
@@ -200,6 +202,17 @@ namespace  Map2D
 						auto e = Enemy00::Object::Create(true,ML::Vec2(x*32,y*32));
 						break;
 					}
+					case -12://Œ®
+					{
+						auto K = Gkey::Object::Create(true, ML::Vec2(x * 32, y * 32));
+						break;
+					}
+					case -13://Œ®”à
+					{
+						auto KD = GDoor::Object::Create(true, ML::Vec2(x * 32, y * 32));
+						break;
+					}
+
 					default:
 						//’Êíƒ}ƒbƒv‚Ì¶¬
 						this->collision.push_back(ML::Box2D(x * 32, y * 32, 32, 32));

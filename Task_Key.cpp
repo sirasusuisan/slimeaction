@@ -3,6 +3,7 @@
 //-------------------------------------------------------------------
 #include  "MyPG.h"
 #include  "Task_Key.h"
+#include "Task_Player.h"
 
 namespace  KEY
 {
@@ -55,6 +56,11 @@ namespace  KEY
 	//「更新」１フレーム毎に行う処理
 	void  Object::UpDate()
 	{
+		auto pl = ge->GetTask_One_G<Player::Object>("プレイヤー");
+		if (pl != nullptr)
+		{
+			this->Havekey = pl->HaveKey;
+		}
 	}
 	//-------------------------------------------------------------------
 	//「２Ｄ描画」１フレーム毎に行う処理

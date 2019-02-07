@@ -114,4 +114,5 @@ public:
 	virtual void Received(BChara* from_);//接触所の応答処理
 	virtual bool CheckHit(const ML::Box2D& hit_);//接触判定
 	virtual void Damage();//プレイヤーのダメージ関数
+	bool HaveKey;//カギの有り無し判定
 };

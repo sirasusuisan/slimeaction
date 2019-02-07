@@ -5,6 +5,8 @@
 #include  "Task_Player.h"
 #include   "Task_Map2D.h"
 #include  "Task_Block.h"
+#include  "Task_GDoor.h"
+#include  "Task_GKey.h"
 
 namespace  Player
 {
@@ -89,6 +91,8 @@ namespace  Player
 		this->playerhp = 3;//hp
 		this->unHitTime = 0;//無敵時間用カウンタ
 		this->moveCnt = 0;//行動カウンタ
+		this->HaveKey = false;//鍵の所持情報
+
 		//★タスクの生成
 		return  true;
 	}
@@ -114,6 +118,8 @@ namespace  Player
 		//めり込まない移動処理
 		ML::Vec2 est = this->moveVec;
 		this->CheckMove_TEST(est);//複数のブロックのあたり判定などに対応する関数
+
+
 	}
 	//-------------------------------------------------------------------
 	//「２Ｄ描画」１フレーム毎に行う処理
@@ -140,6 +146,7 @@ namespace  Player
 	{
 		auto map = ge->GetTask_One_GN<Map2D::Object>("フィールド", "マップ"); //マップが存在するか調べてからアクセス
 		auto block = ge->GetTask_Group_G<Block::Object>("ブロック");
+		auto GD = ge->GetTask_Group_G<GDoor::Object>("扉");
 		//if (nullptr == map) { return; } //マップがなければ判定しない
 
 		//マップが存在し、キャラクタが静止状態じゃなければ[横移動]
@@ -164,6 +171,14 @@ namespace  Player
 					break;
 				}
 			}
+			for (auto id = GD->begin(); id != GD->end(); ++id)
+			{
+				if (this->HaveKey != true && true == (*id)->CheckHit(hit))
+				{
+					this->pos.x = preX;
+					break;
+				}
+			}
 		}
 		//縦軸に対する移動
 		while (e_.y != 0) 
@@ -181,6 +196,14 @@ namespace  Player
 			for (int i = 0; i < block->size(); ++i)
 			{
 				if (true == (*block)[i]->CheckHit(hit))
+				{
+					this->pos.y = preY;
+					break;
+				}
+			}
+			for (auto id = GD->begin(); id != GD->end(); ++id)
+			{
+				if (this->HaveKey!=true&&true == (*id)->CheckHit(hit))
 				{
 					this->pos.y = preY;
 					break;

@@ -106,6 +106,8 @@
     <ClCompile Include="Task_End.cpp" />
     <ClCompile Include="Task_Enemy00.cpp" />
     <ClCompile Include="Task_Game.cpp" />
+    <ClCompile Include="Task_GDoor.cpp" />
+    <ClCompile Include="Task_GKey.cpp" />
     <ClCompile Include="Task_Goal.cpp" />
     <ClCompile Include="Task_Key.cpp" />
     <ClCompile Include="Task_Map2D.cpp" />
@@ -146,6 +148,8 @@
     <ClInclude Include="Task_End.h" />
     <ClInclude Include="Task_Enemy00.h" />
     <ClInclude Include="Task_Game.h" />
+    <ClInclude Include="Task_GDoor.h" />
+    <ClInclude Include="Task_GKey.h" />
     <ClInclude Include="Task_Goal.h" />
     <ClInclude Include="Task_Key.h" />
     <ClInclude Include="Task_Map2D.h" />

@@ -70,9 +70,15 @@ namespace  Stageserect
 
 		this->count++;
 
-		if (in.L1.down)
+		if (in.L1.down)//Q
 		{
 			this->stageNum = 0;
+			this->tyutorial = true;
+			this->Kill();
+		}
+		if (in.R1.down)//w
+		{
+			this->stageNum = 1;
 			this->tyutorial = true;
 			this->Kill();
 		}

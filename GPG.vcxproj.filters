@@ -98,6 +98,12 @@
     <Filter Include="MyPG\Tasks\Game\StageSelect">
       <UniqueIdentifier>{f953bd54-e27f-4b08-8265-d25b7202bd40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyPG\Tasks\Game\Gimmick\Keydoor">
+      <UniqueIdentifier>{670616c9-5752-46c8-8897-993bb64476e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyPG\Tasks\Game\Gimmick\Key">
+      <UniqueIdentifier>{37fdcf56-4d7f-4966-97e6-c8d8c1593895}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myLib.cpp">
@@ -214,6 +220,12 @@
     <ClCompile Include="Task_Stageserect.cpp">
       <Filter>MyPG\Tasks\Game\StageSelect</Filter>
     </ClCompile>
+    <ClCompile Include="Task_GDoor.cpp">
+      <Filter>MyPG\Tasks\Game\Gimmick\Keydoor</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_GKey.cpp">
+      <Filter>MyPG\Tasks\Game\Gimmick\Key</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myLib.h">
@@ -326,6 +338,12 @@
     </ClInclude>
     <ClInclude Include="Task_Stageserect.h">
       <Filter>MyPG\Tasks\Game\StageSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_GDoor.h">
+      <Filter>MyPG\Tasks\Game\Gimmick\Keydoor</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_GKey.h">
+      <Filter>MyPG\Tasks\Game\Gimmick\Key</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
