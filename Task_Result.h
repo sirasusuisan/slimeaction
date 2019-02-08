@@ -24,6 +24,7 @@ namespace  Result
 		static  Resource::SP  Create();
 		//共有する変数はここに追加する
 		string		ResultBG;
+		string		ResultLogo;
 	};
 	//-------------------------------------------------------------------
 	class  Object : public  BTask
@@ -48,6 +49,7 @@ namespace  Result
 	public:
 		//追加したい変数・メソッドはここに追加する
 		//「変数宣言を書く」
+		int		timeCount;
 		//「追加メソッドを書く」
 	};
 }

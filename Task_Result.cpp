@@ -14,6 +14,8 @@ namespace  Result
 	{
 		this->ResultBG = "Resultimg";
 		DG::Image_Create(this->ResultBG, "./data/image/ResultBG.png");
+		this->ResultLogo = "ResultLogo";
+		DG::Image_Create(this->ResultLogo, "./data/image/ResultLogo.png");
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -21,6 +23,7 @@ namespace  Result
 	bool  Resource::Finalize()
 	{
 		DG::Image_Erase(this->ResultBG);
+		DG::Image_Erase(this->ResultLogo);
 		return true;
 	}
 	//-------------------------------------------------------------------
@@ -33,7 +36,7 @@ namespace  Result
 		this->res = Resource::Create();
 
 		//★データ初期化
-		
+		this->timeCount = 60 * 3;
 		//★タスクの生成
 
 		return  true;
@@ -57,7 +60,8 @@ namespace  Result
 	void  Object::UpDate()
 	{
 		auto in = DI::GPad_GetState("P1");
-		if (in.ST.down) {
+		this->timeCount--;
+		if (this->timeCount <= 0) {
 			//自身に消滅要請
 			this->Kill();
 		}
@@ -67,8 +71,17 @@ namespace  Result
 	void  Object::Render2D_AF()
 	{
 		ML::Box2D draw(0, 0, ge->screen2DWidth, ge->screen2DHeight);
-		ML::Box2D src(0, 0, 500, 500);
+		ML::Box2D src(0, 0, 1600, 1200);
 		DG::Image_Draw(this->res->ResultBG, draw, src);
+
+		ML::Box2D drawL(ge->screen2DWidth*0.25, ge->screen2DHeight*0.25, 320, 77);
+		ML::Box2D srcL(0, 0, 582, 77);
+
+		if ((this->timeCount/10) % 4 <= 2)
+		{
+			DG::Image_Draw(this->res->ResultLogo, drawL, srcL);
+		}
+
 	}
 
 	//★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★

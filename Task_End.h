@@ -24,6 +24,8 @@ namespace  End
 		static  Resource::SP  Create();
 		//共有する変数はここに追加する
 		string	EndBG;
+		string	stBG;
+		string	FOBG;
 	};
 	//-------------------------------------------------------------------
 	class  Object : public  BTask
@@ -48,6 +50,8 @@ namespace  End
 	public:
 		//追加したい変数・メソッドはここに追加する
 		//「変数宣言を書く」
+		int TimeCount;
+		int	stCount;
 		//「追加メソッドを書く」
 	};
 }
