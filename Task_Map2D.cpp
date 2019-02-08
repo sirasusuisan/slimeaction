@@ -10,6 +10,7 @@
 #include  "Task_Enemy00.h"
 #include  "Task_GDoor.h"
 #include  "Task_GKey.h"
+#include  "Task_Yazirusi.h"
 namespace  Map2D
 {
 	Resource::WP  Resource::instance;
@@ -210,6 +211,26 @@ namespace  Map2D
 					case -13://Œ®”à
 					{
 						auto KD = GDoor::Object::Create(true, ML::Vec2(x * 32, y * 32));
+						break;
+					}
+					case -14://–îˆóŠÅ”Â¶
+					{
+						auto yk = Yazirusi::Object::Create(true, ML::Vec2(x * 32, y * 32),Yazirusi::Type::left);
+						break;
+					}
+					case -15://–îˆóŠÅ”Â¶ã
+					{
+						auto yk = Yazirusi::Object::Create(true, ML::Vec2(x * 32, y * 32), Yazirusi::Type::upleft);
+						break;
+					}
+					case -16://–îˆóŠÅ‰E
+					{
+						auto yk = Yazirusi::Object::Create(true, ML::Vec2(x * 32, y * 32), Yazirusi::Type::right);
+						break;
+					}
+					case -17://–îˆóŠÅ”Â‰Eã
+					{
+						auto yk = Yazirusi::Object::Create(true, ML::Vec2(x*32 , y *32), Yazirusi::Type::upright);
 						break;
 					}
 

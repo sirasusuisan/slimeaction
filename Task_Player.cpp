@@ -92,6 +92,7 @@ namespace  Player
 		this->unHitTime = 0;//無敵時間用カウンタ
 		this->moveCnt = 0;//行動カウンタ
 		this->HaveKey = false;//鍵の所持情報
+		this->Playerliveflag = false;
 
 		//★タスクの生成
 		return  true;
@@ -341,6 +342,14 @@ namespace  Player
 				this->moveCnt = 0;
 			}
 			break;
+		case TransBound:
+			this->moveCnt++;
+			if (this->moveCnt >= 60 && this->CheckFoot() == true)
+			{
+				nm = Transform_Stand;
+				this->moveCnt = 0;
+			}
+			break;
 			//死亡時
 		case Death:break;
 		}
@@ -380,7 +389,7 @@ namespace  Player
 			else
 				this->moveVec.x = max(this->moveVec.x - this->dSpeed, 0);
 			break;
-			//移動速度減衰を無効化するモーションは下に書く
+		//移動速度減衰を無効化するモーションは下に書く
 		case Bound:
 		case Unnon: break;
 		}
@@ -634,8 +643,11 @@ namespace  Player
 			break;
 		//死亡時
 		case Death:
-			if(this->animCnt>=120)
-			this->Kill();
+			if (this->animCnt >= 120)
+			{
+				this->Playerliveflag = true;
+				this->Kill();
+			}
 			break;
 		}
 	}
@@ -690,6 +702,7 @@ namespace  Player
 		/*30*/{ ML::Box2D(-32, 0, 64, 64), ML::Box2D(0 , 0, 64, 64), ML::Color(1,1,1,1), this->res->DamageImage },//ダメージ受け時
 				{ ML::Box2D(-32, 0, 64, 64), ML::Box2D(0, 0, 64, 64), ML::Color(1,1,1,1), this->res->DeathImage },//死亡時
 			{ ML::Box2D(-32, 0, 64, 64), ML::Box2D(64, 0, 64, 64), ML::Color(1,1,1,1), this->res->DeathImage },//死亡時2
+			{ ML::Box2D(-32, 0, 32, 64), ML::Box2D(0 , 0, 32, 64), ML::Color(1,1,1,1), this->res->DamageImage },//ダメージ受け時
 	//		//	draw		src						color
 	///*0*/   { this->hitBase, ML::Box2D(0,0,64,64), ML::Color(1,1,1,1), this->res->stopImage },	//停止1
 	//		{ this->hitBase, ML::Box2D(64,0,64,64), ML::Color(1,1,1,1), this->res->stopImage }, //停止2
@@ -844,6 +857,9 @@ namespace  Player
 		case Bound:			
 			rtv = imageTable[30];
 			break;
+		case TransBound:
+			rtv = imageTable[30];
+			break;
 		//死亡
 		case Death:
 			work = this->animCnt / 60;
@@ -878,8 +894,15 @@ namespace  Player
 		//吹き飛ばし
 		if (this->pos.x < from_->pos.x) { this->moveVec = ML::Vec2(-4, -5); }
 		else this->moveVec = ML::Vec2(+4, -5); 
-		this->UpdateMotion(Bound);
+		if (this->motion == Stand || this->motion == Walk) {
+			this->UpdateMotion(Bound);
+		}
+		if (this->motion == Transform_Stand || this->motion == Transform_Move)
+		{
+			this->UpdateMotion(TransBound);
+		}
 		//(*ge->GetTask_Group_G<BChara>("UI")->begin())->Received(this);
+		
 		if (this->playerhp <= 0) 
 		{
 			//string e = "death";

@@ -57,6 +57,7 @@ public:
 		TakeOff,	//飛び立つ瞬間(ジャンプ予備動作)
 		Landing,	//着地(ジャンプ後動作)
 		Bound,      //やられ時
+		TransBound,
 		Death,      //死亡時	
 
 		//敵
@@ -115,4 +116,5 @@ public:
 	virtual bool CheckHit(const ML::Box2D& hit_);//接触判定
 	virtual void Damage();//プレイヤーのダメージ関数
 	bool HaveKey;//カギの有り無し判定
+	bool Playerliveflag;//プレイヤーの生存フラグ
 };

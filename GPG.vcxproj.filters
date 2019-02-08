@@ -104,6 +104,9 @@
     <Filter Include="MyPG\Tasks\Game\Gimmick\Key">
       <UniqueIdentifier>{37fdcf56-4d7f-4966-97e6-c8d8c1593895}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyPG\Tasks\Game\Gimmick\Yazirusi">
+      <UniqueIdentifier>{15d1d289-8b2d-49d5-ae02-9f6b2a0367ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myLib.cpp">
@@ -226,6 +229,9 @@
     <ClCompile Include="Task_GKey.cpp">
       <Filter>MyPG\Tasks\Game\Gimmick\Key</Filter>
     </ClCompile>
+    <ClCompile Include="Task_Yazirusi.cpp">
+      <Filter>MyPG\Tasks\Game\Gimmick\Yazirusi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myLib.h">
@@ -344,6 +350,9 @@
     </ClInclude>
     <ClInclude Include="Task_GKey.h">
       <Filter>MyPG\Tasks\Game\Gimmick\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_Yazirusi.h">
+      <Filter>MyPG\Tasks\Game\Gimmick\Yazirusi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

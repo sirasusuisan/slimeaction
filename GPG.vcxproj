@@ -119,6 +119,7 @@
     <ClCompile Include="Task_Title.cpp" />
     <ClCompile Include="Task_Toge.cpp" />
     <ClCompile Include="Task_Hp.cpp" />
+    <ClCompile Include="Task_Yazirusi.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="xnacollision.cpp" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="Task_Title.h" />
     <ClInclude Include="Task_Toge.h" />
     <ClInclude Include="Task_Hp.h" />
+    <ClInclude Include="Task_Yazirusi.h" />
     <ClInclude Include="xnacollision.h" />
   </ItemGroup>
   <ItemGroup>

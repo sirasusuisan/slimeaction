@@ -56,12 +56,16 @@ namespace  Toge
 	//「更新」１フレーム毎に行う処理
 	void  Object::UpDate()
 	{
-		auto pl = ge->GetTask_One_G<Player::Object>("プレイヤー");
-		if (pl != nullptr)
+		ML::Box2D me = this->hitBase.OffsetCopy(this->pos);
+		auto targets = ge->GetTask_Group_G<BChara>("プレイヤー");
+		for (auto it = targets->begin(); it != targets->end(); ++it)//Enemy数分繰り返し
 		{
-			if (pl->CheckHit(this->hitBase))
+			//相手に接触の有無を確認させる
+			if ((*it)->CheckHit(me))
 			{
-				this->Damage();
+				//相手にダメージの処理を行わせる
+				(*it)->Received(this);
+				break;
 			}
 		}
 	}
